@@ -8,6 +8,7 @@ public class Airplane {
     
     //Constructores (mismo nombre de la clase, no lleva modifiers)
     public Airplane (){
+        this("",0,0);
         
     }
     /*Metodos o propiedades

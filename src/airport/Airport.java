@@ -2,7 +2,7 @@ package airport;
 
 import java.util.Calendar;
 
-public class Airport {
+public class Airport implements Comparable <Airport> {
     
     //Generar atributo estático, a este si lo defino aca y no en el constructor 
     private static int idAutonumerado = 1;
@@ -23,19 +23,32 @@ public class Airport {
     
    //Constructores 
     public Airport() {
-        this.id = idAutonumerado++;
-        airplanes = new Airplane[MAX_AIRPLANES]; 
+       //lo llamo vacio pq es el constructor vacio
+       this("","","","", 0,0,0);//evita repetir lineas, sobretodo para objetos grandes
+
 
     }
     public Airport(String nombre, Address address, int anioInauguracion, int capacidad) {
+        
+        
+        this(nombre, address.getPais(),
+                address.getCiudad(),
+                address.getCalle (),
+                address.getNumero(),
+                anioInauguracion
+                , capacidad);
+        
+        /*Constructor anterior al this---> this se usa para menos trabajo
+        
         this.id = idAutonumerado++;
 
         this.nombre = nombre;
         this.address = address;
         this.anioInauguracion = anioInauguracion;
-        this.capacidad = capacidad;
+         this.capacidad = capacidad;
         airplanes = new Airplane[MAX_AIRPLANES]; 
-        this.numero_aviones = 0;
+        this.numero_aviones = 0;*/
+        
 
     }
     public Airport(String nombre, String pais, String ciudad, String calle,
@@ -124,6 +137,45 @@ public class Airport {
         return airplanesString;
         
     }
+    /*
+    Usa equals y compareTo: dos aeropuertos son iguales cuando el id es igual, 
+    un aeropuerto es mayor que el otro cuanto más actual es.
+    */
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Airport other = (Airport) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+    
+     @Override
+    public int compareTo(Airport o) {
+
+        if(this.anioInauguracion < o.getAnioInauguracion()){
+           return -1; 
+        }else if (this.anioInauguracion > o.getAnioInauguracion()){
+            return 1;
+        }else{
+            return 0;
+            }
+        
+
+    }
+    
+    
+    
     
     //toString (siempre al último para que tome todos los métodos)
     @Override
@@ -132,7 +184,8 @@ public class Airport {
                 + anioInauguracion + " y tiene una capacidad de " + capacidad 
                 + " personas " + ". Cuenta con los siguientes aviones: \n" + showAirplanes();
     }
-    
+
+   
     
     
 }

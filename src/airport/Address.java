@@ -9,6 +9,7 @@ public class Address {
     private int numero;
 
     public Address() {
+        this ("","","",0);
     }
 
     public Address(String pais, String ciudad, String calle, int numero) {
