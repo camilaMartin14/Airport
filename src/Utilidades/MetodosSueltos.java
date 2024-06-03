@@ -32,7 +32,7 @@ public class MetodosSueltos {
  
     }
     
-    public static void escribirAeropuerto(Airport a) throws FileNotFoundException, IOException{
+    public static void escribirAeropuertos(Airport a) throws FileNotFoundException, IOException{
         
         File f = new File (VariablesGlobales.FICHERO_AIRPORTS);
         
@@ -40,6 +40,7 @@ public class MetodosSueltos {
             MiObjectOutputStream oos = new MiObjectOutputStream(new FileOutputStream(VariablesGlobales.FICHERO_AIRPORTS));
             //oos.writeObject(a);
             //oos.close();
+           
         }else {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(VariablesGlobales.FICHERO_AIRPORTS));
             oos.writeObject(a);
@@ -53,7 +54,7 @@ public class MetodosSueltos {
     }
     
     public static boolean validaNumeroReal_Exp (String texto) {
-        return texto.matches ("^-?[0-9]+$");
+        return texto.matches ("^-?\\d*\\.?\\d+[eE]?[-+]?\\d*$");
     }
 
 }

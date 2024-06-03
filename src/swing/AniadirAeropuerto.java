@@ -11,6 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AniadirAeropuerto extends javax.swing.JDialog {
+      
+    
 
     /**
      * Creates new form AniadirAeropuerto
@@ -18,6 +20,7 @@ public class AniadirAeropuerto extends javax.swing.JDialog {
     public AniadirAeropuerto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
         
         
         this.buttonGroup1.add(this.rdbPublico);
@@ -36,6 +39,7 @@ public class AniadirAeropuerto extends javax.swing.JDialog {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         txtNombre = new javax.swing.JTextField();
         txtCiudad = new javax.swing.JTextField();
         txtNumero = new javax.swing.JTextField();
@@ -75,6 +79,7 @@ public class AniadirAeropuerto extends javax.swing.JDialog {
             }
         });
 
+        rdbPublico.setSelected(true);
         rdbPublico.setText("Público");
         rdbPublico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,7 +340,7 @@ public class AniadirAeropuerto extends javax.swing.JDialog {
             if (numSocios.isEmpty()){
                 errores += " - Tienes que ingresar un número de socios \n";
             }else{
-                if (!MetodosSueltos.validaNumeroEntero_Exp(numero)) {
+                if (!MetodosSueltos.validaNumeroEntero_Exp(numSocios)) {
                 errores += " - La cantidad de socios debe ser un número debe ser un entero \n";
                 }
             }  
@@ -376,12 +381,10 @@ public class AniadirAeropuerto extends javax.swing.JDialog {
             }
             
             try {
-                MetodosSueltos.escribirAeropuerto(aux);
+                MetodosSueltos.escribirAeropuertos(aux);
+                JOptionPane.showMessageDialog(this, "Aeropuerto creado correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, 
-                        "Aeropuerto creado correctamente",
-                        "Exito",
-                        JOptionPane.ERROR_MESSAGE);
+                
                 JOptionPane.showMessageDialog(this, 
                         ex.getMessage(),
                         "Error",
@@ -400,6 +403,7 @@ public class AniadirAeropuerto extends javax.swing.JDialog {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardarAccion;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

@@ -150,7 +150,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-
+        System.exit(0);
 
     }//GEN-LAST:event_jMenu2MouseClicked
 
