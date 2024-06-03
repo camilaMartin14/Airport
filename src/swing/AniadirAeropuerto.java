@@ -323,7 +323,7 @@ public class AniadirAeropuerto extends javax.swing.JDialog {
                 errores += " - Tienes que ingresar una financiación \n";
             }else{
                 if (!MetodosSueltos.validaNumeroReal_Exp(financiacion)) {
-                    errores += " - La financiación debe ser un número debe ser un número real \n";
+                    errores += " - La financiación debe ser un número real \n";
                 }
             } 
             if (discapacitados.isEmpty()){

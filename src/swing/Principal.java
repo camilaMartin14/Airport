@@ -1,9 +1,20 @@
 package swing;
 
+import Classes.Airport;
+import Classes.PrivateAirport;
+import Classes.PublicAirport;
 import Utilidades.MetodosSueltos;
+import Utilidades.VariablesGlobales;
+import javax.swing.table.DefaultTableModel;
 
 public class Principal extends javax.swing.JFrame {
-
+    
+    private DefaultTableModel modeloTabla;
+    
+    private final int PRIVADO = 1;
+    private final int  PUBLICO = 2;
+    
+   
     /**
      * Creates new form Principal
      */
@@ -11,6 +22,70 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         MetodosSueltos.leerAeropuertos();
+        
+        this.cargarDatos(PRIVADO);
+    }
+    
+    public void cargarDatos(int tipo) {
+        
+        this.modeloTabla = new DefaultTableModel () {
+            
+            @Override
+            public boolean isCellEditable (int row, int column) {
+                return false;
+            }
+        };
+    
+        this.tblAeropuertos.setModel(modeloTabla);
+        
+        int numColumnas = 0;
+        
+        modeloTabla.addColumn("Id");
+        modeloTabla.addColumn("Nombre");
+        modeloTabla.addColumn("Pais");
+        modeloTabla.addColumn("Numero");
+        modeloTabla.addColumn("Calle");
+        modeloTabla.addColumn("Coiudad");
+        modeloTabla.addColumn("Año");
+        modeloTabla.addColumn("Capacidad");
+        
+        if (tipo == PRIVADO) {
+            modeloTabla.addColumn("Socios");
+            numColumnas = 9;
+        }else{
+            modeloTabla.addColumn("Financiación");
+            modeloTabla.addColumn("Discapacitados");
+            numColumnas = 10;
+        }
+        
+        this.tblAeropuertos.getColumnModel().getColumn(0).setPreferredWidth(20);
+        
+        
+        Object[] fila;
+        for (Airport aux : VariablesGlobales.airports) {
+            
+            fila = new Object[numColumnas];
+            
+            fila[0] = aux.getId();
+            fila[1] = aux.getNombre();
+            fila[2] = aux.getAddress().getPais();
+            fila[3] = aux.getAddress().getCiudad();
+            fila[4] = aux.getAddress().getCalle();
+            fila[5] = aux.getAddress().getNumero();
+            fila[6] = aux.getAnioInauguracion();
+            fila[7] = aux.getCapacidad();
+            
+            if (tipo == PRIVADO && aux instanceof PrivateAirport){
+                PrivateAirport pa = (PrivateAirport) aux;
+                fila[8] = pa.getNumSocios();
+                modeloTabla.addRow(fila);
+            }else if (tipo == PUBLICO && aux instanceof PublicAirport){
+                PublicAirport pa = (PublicAirport) aux;
+                fila[8] = pa.getFinanciacion();
+                fila[9] = pa.getNumTrabajadoresDiscapacitados();
+                modeloTabla.addRow(fila);
+            }       
+        }
     }
 
     /**
@@ -26,7 +101,13 @@ public class Principal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblAeropuertos = new javax.swing.JTable();
+        rdbPrivado = new javax.swing.JRadioButton();
+        rdbPublico = new javax.swing.JRadioButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         addAirport = new javax.swing.JMenuItem();
@@ -50,15 +131,58 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        tblAeropuertos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblAeropuertos);
+
+        rdbPrivado.setSelected(true);
+        rdbPrivado.setText("Privado");
+        rdbPrivado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbPrivadoActionPerformed(evt);
+            }
+        });
+
+        rdbPublico.setText("Público");
+        rdbPublico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbPublicoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(rdbPrivado)
+                        .addGap(18, 18, 18)
+                        .addComponent(rdbPublico))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdbPrivado)
+                    .addComponent(rdbPublico))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jMenu1.setText("Aeropuertos");
@@ -127,11 +251,15 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -157,12 +285,26 @@ public class Principal extends javax.swing.JFrame {
     private void addAirportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAirportActionPerformed
         AniadirAeropuerto ventana = new AniadirAeropuerto(this, true);
         ventana.setVisible(true);
-        
+        if (this.rdbPrivado.isSelected()){
+            this.cargarDatos(PRIVADO);
+        }else{
+            this.cargarDatos(PUBLICO);
+        }
     }//GEN-LAST:event_addAirportActionPerformed
+
+    private void rdbPrivadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbPrivadoActionPerformed
+        this.cargarDatos(PRIVADO);
+    }//GEN-LAST:event_rdbPrivadoActionPerformed
+
+    private void rdbPublicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbPublicoActionPerformed
+        this.cargarDatos(PUBLICO);
+    }//GEN-LAST:event_rdbPublicoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu activ;
     private javax.swing.JMenuItem addAirport;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JMenuItem deleteAirplane;
     private javax.swing.JMenuItem deleteAirport;
     private javax.swing.JMenuItem edit;
@@ -177,6 +319,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton rdbPrivado;
+    private javax.swing.JRadioButton rdbPublico;
     private javax.swing.JMenuItem showtxt;
+    private javax.swing.JTable tblAeropuertos;
     // End of variables declaration//GEN-END:variables
 }
