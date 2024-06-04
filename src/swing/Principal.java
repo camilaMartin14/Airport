@@ -5,6 +5,9 @@ import Classes.PrivateAirport;
 import Classes.PublicAirport;
 import Utilidades.MetodosSueltos;
 import Utilidades.VariablesGlobales;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -318,15 +321,38 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_editActionPerformed
 
     private void deleteAirportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteAirportActionPerformed
-
-
-
-
-
-
-
-
-
+//poner equals luegooooo
+        if(this.tblAeropuertos.getSelectedRow()!=-1){
+            int eleccion = JOptionPane.showConfirmDialog(this,
+                    "¿Quieres borrar el aeropuerto?",
+                    "Confirmación",
+                    JOptionPane.YES_NO_OPTION);
+            
+                    if(eleccion == JOptionPane.YES_OPTION){
+                        int fila = this.tblAeropuertos.getSelectedRow();
+                        
+                        int id = (int) this.tblAeropuertos.getValueAt(fila, 0);
+                        
+                        Airport airport = null;
+                        for(Airport aux : VariablesGlobales.airports){
+                            if (aux.getId() == id) {
+                                airport = aux;
+                            }
+                        }
+                        VariablesGlobales.airports.remove(airport);
+                        
+                        try{
+                            MetodosSueltos.actualizarFichero();
+                        }catch(IOException ex){
+                            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+        }else{
+            JOptionPane.showMessageDialog(this,
+                    "No hay filas seleccionadas",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_deleteAirportActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed

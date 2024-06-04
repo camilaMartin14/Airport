@@ -58,24 +58,13 @@ public class MetodosSueltos {
         
         File f = new File (VariablesGlobales.FICHERO_AIRPORTS);
         
-        f.deleteOnExit();
+        f.delete();
         
         for(Airport aux : VariablesGlobales.airports){
             escribirAeropuertos(aux, false);
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     public static void actualizarId(){
    
