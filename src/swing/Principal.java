@@ -93,6 +93,18 @@ public class Principal extends javax.swing.JFrame {
             }       
         }
     }
+    
+    public Airport buscarAeropurto (int id){
+        
+        Airport airport = null;
+        for(Airport aux : VariablesGlobales.airports){
+            if (aux.getId()==id) {
+                airport = aux;
+            }
+        }
+        
+        return airport;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -237,6 +249,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.add(ganancias);
 
         showtxt.setText("Mostrar información");
+        showtxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showtxtActionPerformed(evt);
+            }
+        });
         jMenu1.add(showtxt);
 
         jMenuBar1.add(jMenu1);
@@ -315,9 +332,6 @@ public class Principal extends javax.swing.JFrame {
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
-
-
-
     }//GEN-LAST:event_editActionPerformed
 
     private void deleteAirportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteAirportActionPerformed
@@ -343,6 +357,12 @@ public class Principal extends javax.swing.JFrame {
                         
                         try{
                             MetodosSueltos.actualizarFichero();
+                            
+                            if (this.rdbPrivado.isSelected()){
+                                this.cargarDatos(PRIVADO, this.txtFiltroNombre.getText());
+                            }else{
+                                this.cargarDatos(PUBLICO, this.txtFiltroNombre.getText());
+                            }
                         }catch(IOException ex){
                             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -394,6 +414,33 @@ public class Principal extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_txtFiltroNombreKeyReleased
+
+    private void showtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showtxtActionPerformed
+
+        if (this.tblAeropuertos.getSelectedRow()!=-1){
+           
+            int fila = this.tblAeropuertos.getSelectedRow();
+            
+            int id = (int) this.tblAeropuertos.getValueAt(fila, 0);
+            
+            Airport airport = null;
+            for(Airport aux: VariablesGlobales.airports){
+                if (aux.getId() == id) {
+                    airport = aux;
+                }
+            }
+            
+            JOptionPane.showMessageDialog(this,
+                    airport.toString(),
+                    "Info",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this,
+                    "No hay fila seleccionada",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_showtxtActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu activ;
