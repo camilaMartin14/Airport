@@ -402,44 +402,73 @@ public class AniadirEditarAeropuerto extends javax.swing.JDialog {
             int anioInauguracionAeropuerto = Integer.parseInt(anioInauguracion);
             int capacidadAeropuerto = Integer.parseInt(capacidad);
             
-            Airport aux;
+    
+            
             Address dir = new Address(pais, ciudad, calle, numeroAeropuerto);
             
+            if (this.aeropuertoEditar!=null) {
+               
+                this.aeropuertoEditar.setNombre(nombre);
+                this.aeropuertoEditar.setAddress(dir);
+                this.aeropuertoEditar.setCapacidad(capacidadAeropuerto);
+                this.aeropuertoEditar.setAnioInauguracion(anioInauguracionAeropuerto);
+
+                if (this.rdbPublico.isSelected()) {
+                  double financiacionAeropuerto = Double.parseDouble(financiacion);
+                  int discapacitadosAeropuerto = Integer.parseInt(discapacitados);
+                  
+                  PublicAirport ap = (PublicAirport) this.aeropuertoEditar;
+                  
+                  ap.setFinanciacion(financiacionAeropuerto);
+                  ap.setNumTrabajadoresDiscapacitados(discapacitadosAeropuerto);
+                   
+                }else{
+                  int numSociosAeropuerto = Integer.parseInt(numSocios);
+                  
+                  PrivateAirport ap = (PrivateAirport) this.aeropuertoEditar;
+                  
+                  ap.setNumSocios(numSociosAeropuerto);
+              
+                }
             
-            if (this.rdbPublico.isSelected()){
-                double financiacionAeropuerto = Double.parseDouble(financiacion);
-                int discapacitadosAeropuerto = Integer.parseInt(discapacitados);
-                
-                aux = new PublicAirport(financiacionAeropuerto,
-                                        discapacitadosAeropuerto,
-                                        nombre,
-                                        dir,
-                                        anioInauguracionAeropuerto,
-                                        capacidadAeropuerto);
-                
-                
             }else{
-                int numSociosAeropuerto = Integer.parseInt(numSocios);
+   
+                Airport aux;
+                if (this.rdbPublico.isSelected()){
+                    double financiacionAeropuerto = Double.parseDouble(financiacion);
+                    int discapacitadosAeropuerto = Integer.parseInt(discapacitados);
+
+                    aux = new PublicAirport(financiacionAeropuerto,
+                                            discapacitadosAeropuerto,
+                                            nombre,
+                                            dir,
+                                            anioInauguracionAeropuerto,
+                                            capacidadAeropuerto);
+
+
+                }else{
+                    int numSociosAeropuerto = Integer.parseInt(numSocios);
+
+
+                    aux = new PrivateAirport(numSociosAeropuerto,
+                                            nombre,
+                                            dir,
+                                            anioInauguracionAeropuerto,
+                                            capacidadAeropuerto);
+                }
             
             
-                aux = new PrivateAirport(numSociosAeropuerto,
-                                        nombre,
-                                        dir,
-                                        anioInauguracionAeropuerto,
-                                        capacidadAeropuerto);
+                try {
+                    MetodosSueltos.escribirAeropuertos(aux);
+                    JOptionPane.showMessageDialog(this, "Aeropuerto creado correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                } catch (IOException ex) {
+
+                    JOptionPane.showMessageDialog(this, 
+                            ex.getMessage(),
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
             }
-            
-            try {
-                MetodosSueltos.escribirAeropuertos(aux);
-                JOptionPane.showMessageDialog(this, "Aeropuerto creado correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
-            } catch (IOException ex) {
-                
-                JOptionPane.showMessageDialog(this, 
-                        ex.getMessage(),
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            }
-           
         }else{
             JOptionPane.showMessageDialog(this,
                                     errores,
