@@ -28,7 +28,9 @@ public class MetodosSueltos {
         } catch (EOFException e) {
         } catch (IOException | ClassNotFoundException ex){
                 System.out.println(ex.getMessage());
-        } 
+        }
+        
+        actualizarId();
  
     }
     
@@ -49,6 +51,24 @@ public class MetodosSueltos {
         
         VariablesGlobales.airports.add(a);
     }
+    
+    public static void actualizarId(){
+   
+        if(VariablesGlobales.airports.size()>0 ){
+            
+            int idMayor= 1;
+            for(Airport aux: VariablesGlobales.airports){
+                
+                if (aux.getId()> idMayor) {
+                    idMayor = aux.getId();
+                }
+            }
+            
+            Airport.setIdAutonumerado(idMayor+ 1);
+        }
+    }
+ 
+    
     public static boolean validaNumeroEntero_Exp(String texto) {
         return texto.matches("^-?[0-9]+$");
     }

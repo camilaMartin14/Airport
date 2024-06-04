@@ -318,7 +318,15 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_editActionPerformed
 
     private void deleteAirportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteAirportActionPerformed
-        // TODO add your handling code here:
+
+
+
+
+
+
+
+
+
     }//GEN-LAST:event_deleteAirportActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed

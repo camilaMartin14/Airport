@@ -129,6 +129,12 @@ public abstract class Airport implements Comparable <Airport> {
     public int getCapacidad() {
         return capacidad;
     }
+
+    public static void setIdAutonumerado(int idAutonumerado) {
+        Airport.idAutonumerado = idAutonumerado;
+    }
+    
+    
     
     /**
      * 
