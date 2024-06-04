@@ -22,7 +22,6 @@ public class Airplane implements Activable {
         this.velocidadMaxima = velocidadMaxima;
         this.activado = false;
     }
-
     
     public String getModelo() {
         return modelo;
@@ -48,7 +47,6 @@ public class Airplane implements Activable {
         this.velocidadMaxima = velocidadMaxima;
     }
 
-    //toString: muestra estado del objeto (que modelo, que numero de asientos, etc)
     @Override
     public String toString() {
         return "Airplane{" + "modelo=" + modelo + ", numeroAsientos=" + numeroAsientos + ", velocidadMaxima=" + velocidadMaxima + '}';

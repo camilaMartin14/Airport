@@ -16,7 +16,6 @@ public abstract class Airport implements Comparable <Airport> {
     private int anioInauguracion;
     private int capacidad;
     private ArrayList <Airplane> airplanes;
- 
     
     /**
      * Constructor vacio
@@ -133,8 +132,6 @@ public abstract class Airport implements Comparable <Airport> {
     public static void setIdAutonumerado(int idAutonumerado) {
         Airport.idAutonumerado = idAutonumerado;
     }
-    
-    
     
     /**
      * 

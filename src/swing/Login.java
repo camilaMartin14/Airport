@@ -98,7 +98,6 @@ public class Login extends javax.swing.JFrame {
                     "Error" , 
                     JOptionPane.ERROR_MESSAGE);
         }
-        
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed

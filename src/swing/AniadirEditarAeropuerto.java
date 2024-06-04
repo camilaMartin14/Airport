@@ -13,8 +13,6 @@ import java.util.logging.Logger;
 public class AniadirEditarAeropuerto extends javax.swing.JDialog {
     
     private Airport aeropuertoEditar;
-      
-    
 
     public AniadirEditarAeropuerto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -27,6 +25,7 @@ public class AniadirEditarAeropuerto extends javax.swing.JDialog {
         
         this.setLocationRelativeTo(null);
     }
+    
     /**
      * Creates new form AniadirAeropuerto
      * @param parent
@@ -83,6 +82,7 @@ public class AniadirEditarAeropuerto extends javax.swing.JDialog {
         this.rdbPrivado.setEnabled(false);
         this.rdbPublico.setEnabled(false);
     }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -324,7 +324,6 @@ public class AniadirEditarAeropuerto extends javax.swing.JDialog {
         String numero = this.txtNumero.getText();
         String anioInauguracion = this.txtAnioInauguracion.getText();
         String capacidad = this.txtCapacidad.getText();
-  
         
         
         String financiacion = "", discapacitados = "", numSocios = "";
@@ -395,14 +394,11 @@ public class AniadirEditarAeropuerto extends javax.swing.JDialog {
             }  
         }
          
-         
-         
         if (errores.isEmpty()){
             int numeroAeropuerto = Integer.parseInt(numero);
             int anioInauguracionAeropuerto = Integer.parseInt(anioInauguracion);
             int capacidadAeropuerto = Integer.parseInt(capacidad);
             
-    
             
             Address dir = new Address(pais, ciudad, calle, numeroAeropuerto);
             
@@ -429,10 +425,8 @@ public class AniadirEditarAeropuerto extends javax.swing.JDialog {
                   PrivateAirport ap = (PrivateAirport) this.aeropuertoEditar;
                   
                   ap.setNumSocios(numSociosAeropuerto);
-              
                   
                   this.aeropuertoEditar = ap;
-            
                 }
                 
                 try {
@@ -462,11 +456,8 @@ public class AniadirEditarAeropuerto extends javax.swing.JDialog {
                                             dir,
                                             anioInauguracionAeropuerto,
                                             capacidadAeropuerto);
-
-
                 }else{
                     int numSociosAeropuerto = Integer.parseInt(numSocios);
-
 
                     aux = new PrivateAirport(numSociosAeropuerto,
                                             nombre,
@@ -474,7 +465,6 @@ public class AniadirEditarAeropuerto extends javax.swing.JDialog {
                                             anioInauguracionAeropuerto,
                                             capacidadAeropuerto);
                 }
-            
             
                 try {
                     MetodosSueltos.escribirAeropuertos(aux, true);

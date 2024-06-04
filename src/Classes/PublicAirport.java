@@ -1,7 +1,7 @@
 package Classes;
 
 public class PublicAirport extends Airport{
-    //En Java la herencia es unica (solo hereda de una clase)
+
     private double financiacion;
     private int numTrabajadoresDiscapacitados;
 
@@ -27,7 +27,6 @@ public class PublicAirport extends Airport{
         this.financiacion = financiacion;
         this.numTrabajadoresDiscapacitados = numTrabajadoresDiscapacitados;
     }
-
 
     public double getFinanciacion() {
         return financiacion;
@@ -58,5 +57,4 @@ public class PublicAirport extends Airport{
         double ganancias = cantidad + financiacion + (numTrabajadoresDiscapacitados * 100);
         System.out.println("La ganancia ha sido de "+ ganancias);
     }
-   
 }

@@ -29,9 +29,7 @@ public class MetodosSueltos {
         } catch (IOException | ClassNotFoundException ex){
                 System.out.println(ex.getMessage());
         }
-        
         actualizarId();
- 
     }
     
     public static void escribirAeropuertos(Airport a, boolean aniadirLista) throws FileNotFoundException, IOException{
@@ -65,7 +63,6 @@ public class MetodosSueltos {
         }
     }
 
-    
     public static void actualizarId(){
    
         if(VariablesGlobales.airports.size()>0 ){
@@ -81,7 +78,6 @@ public class MetodosSueltos {
             Airport.setIdAutonumerado(idMayor+ 1);
         }
     }
- 
     
     public static boolean validaNumeroEntero_Exp(String texto) {
         return texto.matches("^-?[0-9]+$");
@@ -90,5 +86,4 @@ public class MetodosSueltos {
     public static boolean validaNumeroReal_Exp (String texto) {
         return texto.matches ("^-?\\d*\\.?\\d+[eE]?[-+]?\\d*$");
     }
-
 }

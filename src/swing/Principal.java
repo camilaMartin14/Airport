@@ -18,7 +18,6 @@ public class Principal extends javax.swing.JFrame {
     private final int PRIVADO = 1;
     private final int  PUBLICO = 2;
     
-   
     /**
      * Creates new form Principal
      */
@@ -335,7 +334,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_editActionPerformed
 
     private void deleteAirportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteAirportActionPerformed
-//poner equals luegooooo
+
         if(this.tblAeropuertos.getSelectedRow()!=-1){
             int eleccion = JOptionPane.showConfirmDialog(this,
                     "¿Quieres borrar el aeropuerto?",
@@ -381,7 +380,6 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         System.exit(0);
-
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void addAirportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAirportActionPerformed
@@ -408,11 +406,6 @@ public class Principal extends javax.swing.JFrame {
         }else{
             this.cargarDatos(PUBLICO, this.txtFiltroNombre.getText());
         }
-
-
-
-
-
     }//GEN-LAST:event_txtFiltroNombreKeyReleased
 
     private void showtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showtxtActionPerformed
