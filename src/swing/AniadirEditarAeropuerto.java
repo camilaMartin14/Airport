@@ -434,7 +434,21 @@ public class AniadirEditarAeropuerto extends javax.swing.JDialog {
                   this.aeropuertoEditar = ap;
             
                 }
-            
+                
+                try {
+                    MetodosSueltos.actualizarFichero();
+                    
+                    JOptionPane.showMessageDialog(this,
+                            "Aeropuerto editado correctamente",
+                            "Éxito",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this,
+                            ex.getMessage(),
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+
             }else{
    
                 Airport aux;
