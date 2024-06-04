@@ -34,7 +34,7 @@ public class MetodosSueltos {
  
     }
     
-    public static void escribirAeropuertos(Airport a) throws FileNotFoundException, IOException{
+    public static void escribirAeropuertos(Airport a, boolean aniadirLista) throws FileNotFoundException, IOException{
         
         File f = new File (VariablesGlobales.FICHERO_AIRPORTS);
         
@@ -49,8 +49,33 @@ public class MetodosSueltos {
             oos.close();
         }
         
-        VariablesGlobales.airports.add(a);
+        if (aniadirLista) {
+            VariablesGlobales.airports.add(a);
+        }
     }
+    
+    public static void actualizarFichero() throws IOException {
+        
+        File f = new File (VariablesGlobales.FICHERO_AIRPORTS);
+        
+        f.deleteOnExit();
+        
+        for(Airport aux : VariablesGlobales.airports){
+            escribirAeropuertos(aux, false);
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     public static void actualizarId(){
    

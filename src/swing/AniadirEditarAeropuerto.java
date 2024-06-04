@@ -422,6 +422,7 @@ public class AniadirEditarAeropuerto extends javax.swing.JDialog {
                   ap.setFinanciacion(financiacionAeropuerto);
                   ap.setNumTrabajadoresDiscapacitados(discapacitadosAeropuerto);
                    
+                  this.aeropuertoEditar = ap;
                 }else{
                   int numSociosAeropuerto = Integer.parseInt(numSocios);
                   
@@ -429,6 +430,9 @@ public class AniadirEditarAeropuerto extends javax.swing.JDialog {
                   
                   ap.setNumSocios(numSociosAeropuerto);
               
+                  
+                  this.aeropuertoEditar = ap;
+            
                 }
             
             }else{
@@ -459,7 +463,7 @@ public class AniadirEditarAeropuerto extends javax.swing.JDialog {
             
             
                 try {
-                    MetodosSueltos.escribirAeropuertos(aux);
+                    MetodosSueltos.escribirAeropuertos(aux, true);
                     JOptionPane.showMessageDialog(this, "Aeropuerto creado correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
                 } catch (IOException ex) {
 
