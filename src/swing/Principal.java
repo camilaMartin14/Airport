@@ -178,6 +178,11 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        txtFiltroNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFiltroNombreActionPerformed(evt);
+            }
+        });
         txtFiltroNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtFiltroNombreKeyReleased(evt);
@@ -442,32 +447,49 @@ public class Principal extends javax.swing.JFrame {
 
     private void gananciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gananciasActionPerformed
 
+        if (this.tblAeropuertos.getSelectedRow()!=-1) {
+            
+            int fila = this.tblAeropuertos.getSelectedRow();
+                    
+            int id = (int) this.tblAeropuertos.getValueAt(fila, 0);
+                    
+            //Airport aeropuerto = buscarAeropuerto(id);
+                    
+            //String gananciasText = JOptionPane.showMessageDialog(this,
+                                                        //"Introduce las ganancias",
+                                                        //"Introducir",
+                                                        //JOptionPane.INFORMATION_MESSAGE);
+            
+                    
+                    /*if (MetodosSueltos.validaNumeroReal_Exp(gananciasText)) {
+                        double ganancia = Double.parseDouble(gananciasText);
+                        JOptionPane.showMessageDialog(this,
+                                aeropuerto.gananciasTotales(ganancia),
+                                "Ganancia",
+                                JOptionPane.INFORMATION_MESSAGE);
+                    }else{
+                        JOptionPane.showMessageDialog(this,
+                                "La ganancia introducida no tiene el formato correcto",
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }*/
 
+        //}else{
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        }
 
 
 
 
     }//GEN-LAST:event_gananciasActionPerformed
+
+    private void txtFiltroNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroNombreActionPerformed
+        if (this.rdbPrivado.isSelected()){
+            this.cargarDatos(PRIVADO, this.txtFiltroNombre.getText());
+        }else{
+            this.cargarDatos(PUBLICO, this.txtFiltroNombre.getText());
+        }
+    }//GEN-LAST:event_txtFiltroNombreActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu activ;

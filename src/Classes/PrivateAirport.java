@@ -38,6 +38,7 @@ public class PrivateAirport extends Airport {
         return super.toString() + "Es privado y tiene " +numSocios+ " socios.";
     }
 
+    @Override
     public String gananciasTotales(double cantidad) {
 
         double ganancias = cantidad / numSocios;
