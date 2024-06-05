@@ -232,7 +232,7 @@ public abstract class Airport implements Comparable <Airport> {
      * 
      * @param cantidad 
      */
-    public abstract void gananciasTotales (double cantidad); 
+    public abstract String gananciasTotales (double cantidad);
     
     /**
      * 

@@ -245,6 +245,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.add(deleteAirport);
 
         ganancias.setText("Ganancias");
+        ganancias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gananciasActionPerformed(evt);
+            }
+        });
         jMenu1.add(ganancias);
 
         showtxt.setText("Mostrar información");
@@ -434,6 +439,35 @@ public class Principal extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_showtxtActionPerformed
+
+    private void gananciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gananciasActionPerformed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }//GEN-LAST:event_gananciasActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu activ;

@@ -38,9 +38,10 @@ public class PrivateAirport extends Airport {
         return super.toString() + "Es privado y tiene " +numSocios+ " socios.";
     }
 
-    public void gananciasTotales(double cantidad) {
+    public String gananciasTotales(double cantidad) {
 
         double ganancias = cantidad / numSocios;
-        System.out.println("La cantidad ganada por cada socio es de: " +ganancias);
+        
+        return "La cantidad ganada por cada socio es de: " + ganancias;
     }
 }

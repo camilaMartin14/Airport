@@ -52,9 +52,10 @@ public class PublicAirport extends Airport{
                 " trabajadores con capacidades diferentes.";
     }
 
-    public void gananciasTotales(double cantidad) {
-
+    public String gananciasTotales(double cantidad) {
+ 
         double ganancias = cantidad + financiacion + (numTrabajadoresDiscapacitados * 100);
-        System.out.println("La ganancia ha sido de "+ ganancias);
+    
+        return "La ganancia ha sido de " + ganancias;
     }
 }
