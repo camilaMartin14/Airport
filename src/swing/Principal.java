@@ -453,15 +453,13 @@ public class Principal extends javax.swing.JFrame {
                     
             int id = (int) this.tblAeropuertos.getValueAt(fila, 0);
                     
-            //Airport aeropuerto = buscarAeropuerto(id);
+            Airport aeropuerto = buscarAeropuerto(id);
                     
-            //String gananciasText = JOptionPane.showMessageDialog(this,
-                                                        //"Introduce las ganancias",
-                                                        //"Introducir",
-                                                        //JOptionPane.INFORMATION_MESSAGE);
-            
-                    
-                    /*if (MetodosSueltos.validaNumeroReal_Exp(gananciasText)) {
+            String gananciasText = JOptionPane.showMessageDialog(this,
+                                                        "Introduce las ganancias",
+                                                        "Introducir",
+                                                        JOptionPane.INFORMATION_MESSAGE);
+                    if (MetodosSueltos.validaNumeroReal_Exp(gananciasText)) {
                         double ganancia = Double.parseDouble(gananciasText);
                         JOptionPane.showMessageDialog(this,
                                 aeropuerto.gananciasTotales(ganancia),
@@ -472,9 +470,9 @@ public class Principal extends javax.swing.JFrame {
                                 "La ganancia introducida no tiene el formato correcto",
                                 "Error",
                                 JOptionPane.ERROR_MESSAGE);
-                    }*/
+                    }
 
-        //}else{
+        }else{
 
         }
 
@@ -518,4 +516,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable tblAeropuertos;
     private javax.swing.JTextField txtFiltroNombre;
     // End of variables declaration//GEN-END:variables
+
+    private Airport buscarAeropuerto(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
