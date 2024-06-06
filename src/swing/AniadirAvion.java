@@ -4,7 +4,12 @@
  */
 package swing;
 
+import Classes.Airplane;
+import Classes.Airport;
+import Classes.PrivateAirport;
+import Utilidades.VariablesGlobales;
 import java.awt.Frame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,7 +27,22 @@ public class AniadirAvion extends javax.swing.JDialog {
         this.buttonGroup1.add(this.rdbAvionActivado);
         this.buttonGroup1.add(this.rdbAvionDesactivado);
     }
+    
+   public void cargarAeropuertos(){
+   
+        String estado = "";
 
+        for (Airport aux: VariablesGlobales.airports){
+            estado = aux.getNombre();
+
+            if(aux instanceof PrivateAirport){
+                estado += "(Privado)";
+           }else{
+                estado += "(Público)";
+            }
+            this.cmbAeropuerto.addItem(estado);
+        }
+   }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,7 +58,7 @@ public class AniadirAvion extends javax.swing.JDialog {
         txtAsientos = new javax.swing.JTextField();
         rdbAvionActivado = new javax.swing.JRadioButton();
         rdbAvionDesactivado = new javax.swing.JRadioButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbAeropuerto = new javax.swing.JComboBox<>();
         btnGuardar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -58,7 +78,7 @@ public class AniadirAvion extends javax.swing.JDialog {
 
         rdbAvionDesactivado.setText("Desactivado");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbAeropuerto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +121,7 @@ public class AniadirAvion extends javax.swing.JDialog {
                     .addComponent(txtVelocidadMaxima)
                     .addComponent(txtAsientos)
                     .addComponent(txtModelo)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cmbAeropuerto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
@@ -125,7 +145,7 @@ public class AniadirAvion extends javax.swing.JDialog {
                     .addComponent(rdbAvionDesactivado))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbAeropuerto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -152,32 +172,43 @@ public class AniadirAvion extends javax.swing.JDialog {
         boolean activado = this.rdbAvionActivado.isSelected();
         
         if (modelo.isEmpty()) {
-            
+            errores+= "- El modelo no puede estar vacío \n"; 
         }
         if (asientos.isEmpty()) {
-
+            errores+= "- Los asientos no pueden estar vacíos \n"; 
                 }
         if (velMax.isEmpty()) {
-
+            errores+= "- La velocidad no puede estar vacía \n"; 
                 }
         
         
         
         if (errores.isEmpty()) {
             
+            int numAsientos = Integer.parseInt(asientos);
+            double velocidad = Double.parseDouble(velMax);
+            
+            Airplane a = new Airplane(modelo, numAsientos, velocidad);
+            
+            boolean existe= false;
+            
+            if (existe) {
+                
+            }else{
+              JOptionPane.showMessageDialog(this,
+                    "El avion ya existe en este aeropuerto",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);  
+            }
+            
+            
+            
+        }else{
+            JOptionPane.showMessageDialog(this,
+                    errores,
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
-
-
-
-
-
-
-
-
-
-
-
-
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
@@ -187,8 +218,8 @@ public class AniadirAvion extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cmbAeropuerto;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
