@@ -446,7 +446,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_showtxtActionPerformed
 
     private void gananciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gananciasActionPerformed
-
+/*
         if (this.tblAeropuertos.getSelectedRow()!=-1) {
             
             int fila = this.tblAeropuertos.getSelectedRow();
@@ -478,7 +478,7 @@ public class Principal extends javax.swing.JFrame {
 
 
 
-
+*/
     }//GEN-LAST:event_gananciasActionPerformed
 
     private void txtFiltroNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroNombreActionPerformed

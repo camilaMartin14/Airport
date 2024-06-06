@@ -4,17 +4,23 @@
  */
 package swing;
 
+import java.awt.Frame;
+
 /**
  *
  * @author 2004c
  */
-public class AniadirAvion extends javax.swing.JFrame {
+public class AniadirAvion extends javax.swing.JDialog {
 
     /**
      * Creates new form AniadirAvion
+     * @param parent
      */
-    public AniadirAvion() {
+    public AniadirAvion(java.awt.Frame parent, boolean modal) {
+        super (parent, modal);
         initComponents();
+        this.buttonGroup1.add(this.rdbAvionActivado);
+        this.buttonGroup1.add(this.rdbAvionDesactivado);
     }
 
     /**
@@ -30,10 +36,10 @@ public class AniadirAvion extends javax.swing.JFrame {
         txtModelo = new javax.swing.JTextField();
         txtVelocidadMaxima = new javax.swing.JTextField();
         txtAsientos = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rdbAvionActivado = new javax.swing.JRadioButton();
+        rdbAvionDesactivado = new javax.swing.JRadioButton();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -42,21 +48,26 @@ public class AniadirAvion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Activado");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        rdbAvionActivado.setSelected(true);
+        rdbAvionActivado.setText("Activado");
+        rdbAvionActivado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                rdbAvionActivadoActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setText("Desactivado");
+        rdbAvionDesactivado.setText("Desactivado");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton1.setText("jButton1");
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Salir");
 
         jLabel1.setText("Modelo");
 
@@ -80,13 +91,13 @@ public class AniadirAvion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
+                        .addComponent(rdbAvionActivado)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton2))
+                        .addComponent(rdbAvionDesactivado))
                     .addComponent(txtVelocidadMaxima)
                     .addComponent(txtAsientos)
                     .addComponent(txtModelo)
@@ -110,15 +121,15 @@ public class AniadirAvion extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(rdbAvionActivado)
+                    .addComponent(rdbAvionDesactivado))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnGuardar)
                     .addComponent(jButton2))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
@@ -126,56 +137,64 @@ public class AniadirAvion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void rdbAvionActivadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbAvionActivadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_rdbAvionActivadoActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        
+        String errores = "";
+        
+        String modelo = this.txtModelo.getText();
+        String asientos = this.txtAsientos.getText();
+        String velMax = this.txtVelocidadMaxima.getText();
+        
+        boolean activado = this.rdbAvionActivado.isSelected();
+        
+        if (modelo.isEmpty()) {
+            
+        }
+        if (asientos.isEmpty()) {
+
+                }
+        if (velMax.isEmpty()) {
+
+                }
+        
+        
+        
+        if (errores.isEmpty()) {
+            
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AniadirAvion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AniadirAvion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AniadirAvion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AniadirAvion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AniadirAvion().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGuardar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton rdbAvionActivado;
+    private javax.swing.JRadioButton rdbAvionDesactivado;
     private javax.swing.JTextField txtAsientos;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtVelocidadMaxima;
