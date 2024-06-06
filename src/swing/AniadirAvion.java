@@ -7,8 +7,12 @@ package swing;
 import Classes.Airplane;
 import Classes.Airport;
 import Classes.PrivateAirport;
+import Utilidades.MetodosSueltos;
 import Utilidades.VariablesGlobales;
 import java.awt.Frame;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -60,7 +64,7 @@ public class AniadirAvion extends javax.swing.JDialog {
         rdbAvionDesactivado = new javax.swing.JRadioButton();
         cmbAeropuerto = new javax.swing.JComboBox<>();
         btnGuardar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -87,7 +91,12 @@ public class AniadirAvion extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setText("Salir");
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Modelo");
 
@@ -113,7 +122,7 @@ public class AniadirAvion extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                        .addComponent(btnCancelar))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(rdbAvionActivado)
                         .addGap(18, 18, 18)
@@ -150,7 +159,7 @@ public class AniadirAvion extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
-                    .addComponent(jButton2))
+                    .addComponent(btnCancelar))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -197,20 +206,29 @@ public class AniadirAvion extends javax.swing.JDialog {
             
             
             
-            for (Airport aux: auxAero.getAirplanes()){
+            for (Airplane aux: auxAero.getAirplanes()){
                 if (aux.equals(a)) {
                     existe = true;
                 }
             }
          
             if (!existe) {
+                
+                try{
                 auxAero.aniadirAvion(a);
+                MetodosSueltos.actualizarFichero();
+                
+                
+                
+                
                 
                 JOptionPane.showMessageDialog(this,
                     "El avion se ha creado correctamente",
                     "Exito",
                     JOptionPane.INFORMATION_MESSAGE); 
-                
+                }catch (IOException ex){
+                    Logger.getLogger(AniadirAvion.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }else{
               JOptionPane.showMessageDialog(this,
                     "El avion ya existe en este aeropuerto",
@@ -226,15 +244,20 @@ public class AniadirAvion extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+
+        this.dispose();;
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cmbAeropuerto;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

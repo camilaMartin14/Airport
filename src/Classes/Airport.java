@@ -246,4 +246,12 @@ public abstract class Airport implements Comparable <Airport> {
                 " personas. \n " + " Cuenta con los siguientes aviones: \n" +
                 showAirplanes() +"\n ";
     }
+
+    public void aniadirAvion(Airplane a) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+     public ArrayList <Airplane> getAirplanes(){
+        return airplanes;
+    }
 }
