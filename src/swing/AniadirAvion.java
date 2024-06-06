@@ -189,10 +189,27 @@ public class AniadirAvion extends javax.swing.JDialog {
             double velocidad = Double.parseDouble(velMax);
             
             Airplane a = new Airplane(modelo, numAsientos, velocidad);
+            a.setActivado(activado);
             
             boolean existe= false;
             
-            if (existe) {
+            Airport auxAero = VariablesGlobales.airports.get(this.cmbAeropuerto.getSelectedIndex());
+            
+            
+            
+            for (Airport aux: auxAero.getAirplanes()){
+                if (aux.equals(a)) {
+                    existe = true;
+                }
+            }
+         
+            if (!existe) {
+                auxAero.aniadirAvion(a);
+                
+                JOptionPane.showMessageDialog(this,
+                    "El avion se ha creado correctamente",
+                    "Exito",
+                    JOptionPane.INFORMATION_MESSAGE); 
                 
             }else{
               JOptionPane.showMessageDialog(this,
@@ -200,9 +217,7 @@ public class AniadirAvion extends javax.swing.JDialog {
                     "Error",
                     JOptionPane.ERROR_MESSAGE);  
             }
-            
-            
-            
+         
         }else{
             JOptionPane.showMessageDialog(this,
                     errores,
