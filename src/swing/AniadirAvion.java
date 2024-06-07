@@ -30,10 +30,10 @@ public class AniadirAvion extends javax.swing.JDialog {
         initComponents();
         this.buttonGroup1.add(this.rdbAvionActivado);
         this.buttonGroup1.add(this.rdbAvionDesactivado);
-        this.cargarAeropuertos();
+        MetodosSueltos.cargarAeropurtos(cmbAeropuerto);
     }
     
-   public void cargarAeropuertos(){
+    /*public void cargarAeropuertos(){
    
         String estado = "";
 
@@ -47,7 +47,7 @@ public class AniadirAvion extends javax.swing.JDialog {
             }
             this.cmbAeropuerto.addItem(estado);
         }
-   }
+   }*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

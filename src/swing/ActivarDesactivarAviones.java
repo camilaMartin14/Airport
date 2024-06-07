@@ -8,6 +8,7 @@ import Classes.Airplane;
 import Classes.Airport;
 import Utilidades.MetodosSueltos;
 import Utilidades.VariablesGlobales;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -64,6 +65,11 @@ public class ActivarDesactivarAviones extends javax.swing.JDialog {
         cmbAeropuerto.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbAeropuertoItemStateChanged(evt);
+            }
+        });
+        cmbAeropuerto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbAeropuertoActionPerformed(evt);
             }
         });
 
@@ -153,8 +159,16 @@ public class ActivarDesactivarAviones extends javax.swing.JDialog {
         
         if (this.rdbActivado.isSelected()) {
             a.setActivado(true);
+            JOptionPane.showMessageDialog(this,
+                                        "El avion se ha activado",
+                                        "Info",
+                                        JOptionPane.INFORMATION_MESSAGE);
         }else if (this.rdbDesactivado.isSelected()) {
             a.setActivado(false);
+            JOptionPane.showMessageDialog(this,
+                                        "El avion se ha desactivado",
+                                        "Info",
+                                        JOptionPane.INFORMATION_MESSAGE);
         }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -184,18 +198,24 @@ public class ActivarDesactivarAviones extends javax.swing.JDialog {
        
         Airport auxAero = VariablesGlobales.airports.get(this.cmbAeropuerto.getSelectedIndex());
         
-        Airplane a = auxAero.getAirplane(this.cmbAvion.getSelectedItem().toString());
         
-        if (a.isActivado()) {
-            this.rdbActivado.setSelected(true);
-        }else{
-            this.rdbDesactivado.setSelected(true);
+        if (auxAero.tieneAviones()&& this.cmbAvion.getItemCount()!=0) {
+            Airplane a = auxAero.getAirplane(this.cmbAvion.getSelectedItem().toString());
+            if (a.isActivado()) {
+                this.rdbActivado.setSelected(true);
+            }else{
+                this.rdbDesactivado.setSelected(true);
+            }    
         }
     }//GEN-LAST:event_cmbAvionItemStateChanged
 
     private void cmbAvionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAvionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbAvionActionPerformed
+
+    private void cmbAeropuertoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAeropuertoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbAeropuertoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

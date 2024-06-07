@@ -385,7 +385,16 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteAirportActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        // TODO add your handling code here:
+        
+        if (VariablesGlobales.airports.size()>0) {
+            ActivarDesactivarAviones ventana = new ActivarDesactivarAviones(this, true);
+            ventana.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this,
+                    "No hay aeropuertos",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
