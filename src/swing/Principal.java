@@ -387,7 +387,7 @@ public class Principal extends javax.swing.JFrame {
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         
         if (VariablesGlobales.airports.size()>0) {
-            ActivarDesactivarAviones ventana = new ActivarDesactivarAviones(this, true);
+            GestionAviones ventana = new GestionAviones(this, true, true);
             ventana.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this,

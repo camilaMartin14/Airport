@@ -8,24 +8,46 @@ import Classes.Airplane;
 import Classes.Airport;
 import Utilidades.MetodosSueltos;
 import Utilidades.VariablesGlobales;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author 2004c
  */
-public class ActivarDesactivarAviones extends javax.swing.JDialog {
+public class GestionAviones extends javax.swing.JDialog {
+    
+    private boolean modo;
+    
 
     /**
      * Creates new form ActivarDesactivarAviones
+     * true = activar y desactivar aviones, false = eliminar aviones
      */
-    public ActivarDesactivarAviones(java.awt.Frame parent, boolean modal) {
+    public GestionAviones(java.awt.Frame parent, boolean modal, boolean modo) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        this.modo = modo;
         this.buttonGroup1.add(this.rdbActivado);
         this.buttonGroup1.add(this.rdbDesactivado);
         MetodosSueltos.cargarAeropurtos(cmbAeropuerto);
+        
+        if (!modo) {
+            this.rdbActivado.setVisible(false);
+            this.rdbDesactivado.setVisible(false);
+            this.btnGuardar.setText("Eliminar");
+        }else{
+            this.buttonGroup1.add(this.rdbActivado);
+            this.buttonGroup1.add(this.rdbDesactivado);
+        }
+        
+        
+        
+        
+        
     }
 
     /**
@@ -153,22 +175,40 @@ public class ActivarDesactivarAviones extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
-        Airport auxAero = VariablesGlobales.airports.get(this.cmbAeropuerto.getSelectedIndex());
+        if (this.modo) {
+            Airport auxAero = VariablesGlobales.airports.get(this.cmbAeropuerto.getSelectedIndex());
 
-        Airplane a = auxAero.getAirplane(this.cmbAvion.getSelectedItem().toString());
-        
-        if (this.rdbActivado.isSelected()) {
-            a.setActivado(true);
-            JOptionPane.showMessageDialog(this,
-                                        "El avion se ha activado",
-                                        "Info",
-                                        JOptionPane.INFORMATION_MESSAGE);
-        }else if (this.rdbDesactivado.isSelected()) {
-            a.setActivado(false);
-            JOptionPane.showMessageDialog(this,
-                                        "El avion se ha desactivado",
-                                        "Info",
-                                        JOptionPane.INFORMATION_MESSAGE);
+            Airplane a = auxAero.getAirplane(this.cmbAvion.getSelectedItem().toString());
+
+            auxAero.eliminarAvion(a);
+            
+            try{
+            MetodosSueltos.actualizarFichero();
+            MetodosSueltos.cargarAeropurtos(cmbAeropuerto);
+            }catch (IOException ex){
+            Logger.getLogger(GestionAviones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            Airport auxAero = VariablesGlobales.airports.get(this.cmbAeropuerto.getSelectedIndex());
+
+            if (auxAero.tieneAviones()) {
+                            Airplane a = auxAero.getAirplane(this.cmbAvion.getSelectedItem().toString());
+
+            
+                if (this.rdbActivado.isSelected()) {
+                    a.setActivado(true);
+                    JOptionPane.showMessageDialog(this,
+                                                "El avion se ha activado",
+                                                "Info",
+                                                JOptionPane.INFORMATION_MESSAGE);
+                }else if (this.rdbDesactivado.isSelected()) {
+                    a.setActivado(false);
+                    JOptionPane.showMessageDialog(this,
+                                                "El avion se ha desactivado",
+                                                "Info",
+                                                JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
         }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
