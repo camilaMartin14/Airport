@@ -4,7 +4,10 @@
  */
 package swing;
 
+import Classes.Airplane;
+import Classes.Airport;
 import Utilidades.MetodosSueltos;
+import Utilidades.VariablesGlobales;
 
 /**
  *
@@ -48,6 +51,11 @@ public class ActivarDesactivarAviones extends javax.swing.JDialog {
         cmbAvion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         cmbAeropuerto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbAeropuerto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbAeropuertoItemStateChanged(evt);
+            }
+        });
 
         jLabel1.setText("Avión");
 
@@ -130,6 +138,27 @@ public class ActivarDesactivarAviones extends javax.swing.JDialog {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void cmbAeropuertoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAeropuertoItemStateChanged
+
+        Airport auxAero = VariablesGlobales.airports.get(this.cmbAeropuerto.getSelectedIndex());
+
+        if (auxAero.haveAirplanes()) {
+            
+            this.cmbAvion.removeAllItems();
+            
+            for (Airplane a: auxAero.getAirplanes()){
+                this.cmbAvion.addItem(a.getModelo());
+            }
+            
+        }else{
+            
+            
+        }
+
+
+
+    }//GEN-LAST:event_cmbAeropuertoItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
