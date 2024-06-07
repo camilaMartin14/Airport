@@ -30,6 +30,7 @@ public class AniadirAvion extends javax.swing.JDialog {
         initComponents();
         this.buttonGroup1.add(this.rdbAvionActivado);
         this.buttonGroup1.add(this.rdbAvionDesactivado);
+        this.cargarAeropuertos();
     }
     
    public void cargarAeropuertos(){

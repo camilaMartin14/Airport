@@ -4,6 +4,8 @@
  */
 package swing;
 
+import Utilidades.MetodosSueltos;
+
 /**
  *
  * @author 2004c
@@ -19,6 +21,7 @@ public class ActivarDesactivarAviones extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         this.buttonGroup1.add(this.rdbActivado);
         this.buttonGroup1.add(this.rdbDesactivado);
+        MetodosSueltos.cargarAeropurtos(cmbAeropuerto);
     }
 
     /**

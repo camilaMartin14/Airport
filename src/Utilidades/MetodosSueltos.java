@@ -1,6 +1,7 @@
 package Utilidades;
 
 import Classes.Airport;
+import Classes.PrivateAirport;
 import java.io.EOFException;
 import java.io.File;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import javax.swing.JComboBox;
 
 
 public class MetodosSueltos {
@@ -49,6 +51,20 @@ public class MetodosSueltos {
         
         if (aniadirLista) {
             VariablesGlobales.airports.add(a);
+        }
+    }
+    
+    public static void cargarAeropurtos (JComboBox cmb) {
+        String estado = "";
+        
+        for(Airport aux: VariablesGlobales.airports){
+            estado = aux.getNombre();
+            if (aux instanceof PrivateAirport) {
+                estado += "(Privado)";
+            }else{
+                estado += "(Público)";
+            }
+            cmb.addItem(estado);
         }
     }
     
