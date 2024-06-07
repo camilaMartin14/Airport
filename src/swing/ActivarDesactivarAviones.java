@@ -54,6 +54,11 @@ public class ActivarDesactivarAviones extends javax.swing.JDialog {
                 cmbAvionItemStateChanged(evt);
             }
         });
+        cmbAvion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbAvionActionPerformed(evt);
+            }
+        });
 
         cmbAeropuerto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbAeropuerto.addItemListener(new java.awt.event.ItemListener() {
@@ -142,8 +147,15 @@ public class ActivarDesactivarAviones extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
+        Airport auxAero = VariablesGlobales.airports.get(this.cmbAeropuerto.getSelectedIndex());
 
-
+        Airplane a = auxAero.getAirplane(this.cmbAvion.getSelectedItem().toString());
+        
+        if (this.rdbActivado.isSelected()) {
+            a.setActivado(true);
+        }else if (this.rdbDesactivado.isSelected()) {
+            a.setActivado(false);
+        }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -169,18 +181,21 @@ public class ActivarDesactivarAviones extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbAeropuertoItemStateChanged
 
     private void cmbAvionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAvionItemStateChanged
-
-
-
-
-
-
-
-
-
-
-
+       
+        Airport auxAero = VariablesGlobales.airports.get(this.cmbAeropuerto.getSelectedIndex());
+        
+        Airplane a = auxAero.getAirplane(this.cmbAvion.getSelectedItem().toString());
+        
+        if (a.isActivado()) {
+            this.rdbActivado.setSelected(true);
+        }else{
+            this.rdbDesactivado.setSelected(true);
+        }
     }//GEN-LAST:event_cmbAvionItemStateChanged
+
+    private void cmbAvionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAvionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbAvionActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
