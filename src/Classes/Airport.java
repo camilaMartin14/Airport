@@ -254,4 +254,24 @@ public abstract class Airport implements Comparable <Airport> {
      public ArrayList <Airplane> getAirplanes(){
         return airplanes;
     }
+     public void eliminarAvion (Airplane a){
+        if (a !=null) {
+            this.airplanes.remove(a);
+        }else{
+            System.out.println("No debe ser nulo");
+        }
+    }
+    
+    public boolean tieneAviones(){
+        return this.airplanes.size()>0;
+    }
+
+    public Airplane getAirplane (String nombre){
+        for(Airplane a: airplanes){
+            if (a.getModelo().equalsIgnoreCase(nombre)) {
+               return a;
+            }
+        }
+        return null;
+    }
 }

@@ -49,6 +49,11 @@ public class ActivarDesactivarAviones extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         cmbAvion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbAvion.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbAvionItemStateChanged(evt);
+            }
+        });
 
         cmbAeropuerto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbAeropuerto.addItemListener(new java.awt.event.ItemListener() {
@@ -136,29 +141,46 @@ public class ActivarDesactivarAviones extends javax.swing.JDialog {
     }//GEN-LAST:event_rdbActivadoActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+
+
+
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void cmbAeropuertoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAeropuertoItemStateChanged
 
         Airport auxAero = VariablesGlobales.airports.get(this.cmbAeropuerto.getSelectedIndex());
 
-        if (auxAero.haveAirplanes()) {
+        if (auxAero.tieneAviones()) {
             
             this.cmbAvion.removeAllItems();
             
             for (Airplane a: auxAero.getAirplanes()){
                 this.cmbAvion.addItem(a.getModelo());
             }
-            
+            btnGuardar.setEnabled(true);
         }else{
-            
+            btnGuardar.setEnabled(false);
             
         }
 
 
 
     }//GEN-LAST:event_cmbAeropuertoItemStateChanged
+
+    private void cmbAvionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAvionItemStateChanged
+
+
+
+
+
+
+
+
+
+
+
+    }//GEN-LAST:event_cmbAvionItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

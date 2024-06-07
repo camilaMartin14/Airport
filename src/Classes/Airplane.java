@@ -61,7 +61,29 @@ public class Airplane implements Activable {
     public void setActivado(boolean value) {
         this.activado = value;
     }
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //NO SE EN DONDE VA ESTO
+    
+    
+    
     /**@Override
     public boolean isActivado() {
         return activado;
