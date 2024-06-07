@@ -175,16 +175,34 @@ public class GestionAviones extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
-        if (this.modo) {
+        if (!this.modo) {
             Airport auxAero = VariablesGlobales.airports.get(this.cmbAeropuerto.getSelectedIndex());
 
             Airplane a = auxAero.getAirplane(this.cmbAvion.getSelectedItem().toString());
 
             auxAero.eliminarAvion(a);
+            JOptionPane.showMessageDialog(this,
+                                        "El avion se ha borrado",
+                                        "Info",
+                                        JOptionPane.INFORMATION_MESSAGE);
             
             try{
             MetodosSueltos.actualizarFichero();
-            MetodosSueltos.cargarAeropurtos(cmbAeropuerto);
+            
+            
+            this.cmbAvion.removeAllItems();
+            
+            for (Airplane aux: auxAero.getAirplanes()){
+                this.cmbAvion.addItem(aux.getModelo());
+            }
+            
+                if (auxAero.tieneAviones()) {
+                    btnGuardar.setEnabled(true);
+                }else{
+                    btnGuardar.setEnabled(false);
+                }
+            
+            
             }catch (IOException ex){
             Logger.getLogger(GestionAviones.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -229,9 +247,6 @@ public class GestionAviones extends javax.swing.JDialog {
             btnGuardar.setEnabled(false);
             
         }
-
-
-
     }//GEN-LAST:event_cmbAeropuertoItemStateChanged
 
     private void cmbAvionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAvionItemStateChanged

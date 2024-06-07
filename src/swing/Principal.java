@@ -281,6 +281,11 @@ public class Principal extends javax.swing.JFrame {
         activ.add(jMenuItem9);
 
         deleteAirplane.setText("Borrar...");
+        deleteAirplane.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteAirplaneActionPerformed(evt);
+            }
+        });
         activ.add(deleteAirplane);
 
         jMenuBar1.add(activ);
@@ -385,7 +390,6 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteAirportActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        
         if (VariablesGlobales.airports.size()>0) {
             GestionAviones ventana = new GestionAviones(this, true, true);
             ventana.setVisible(true);
@@ -497,6 +501,18 @@ public class Principal extends javax.swing.JFrame {
             this.cargarDatos(PUBLICO, this.txtFiltroNombre.getText());
         }
     }//GEN-LAST:event_txtFiltroNombreActionPerformed
+
+    private void deleteAirplaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteAirplaneActionPerformed
+        if (VariablesGlobales.airports.size()>0) {
+            GestionAviones ventana = new GestionAviones(this, true, false);
+            ventana.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this,
+                    "No hay aeropuertos",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_deleteAirplaneActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu activ;
