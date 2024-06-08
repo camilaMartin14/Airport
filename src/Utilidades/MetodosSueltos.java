@@ -40,8 +40,8 @@ public class MetodosSueltos {
         
         if (f.exists()) {
             MiObjectOutputStream oos = new MiObjectOutputStream(new FileOutputStream(VariablesGlobales.FICHERO_AIRPORTS));
-            //oos.writeObject(a);
-            //oos.close();
+            oos.writeObject(a);
+            oos.close();
            
         }else {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(VariablesGlobales.FICHERO_AIRPORTS));

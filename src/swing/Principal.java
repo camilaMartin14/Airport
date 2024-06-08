@@ -17,6 +17,7 @@ public class Principal extends javax.swing.JFrame {
     
     private final int PRIVADO = 1;
     private final int  PUBLICO = 2;
+   
     
     /**
      * Creates new form Principal
@@ -27,6 +28,9 @@ public class Principal extends javax.swing.JFrame {
         MetodosSueltos.leerAeropuertos();
         
         this.cargarDatos(PRIVADO, "");
+        
+        this.buttonGroup1.add(this.rdbPublico);
+        this.buttonGroup1.add(this.rdbPrivado);
     }
     
     public void cargarDatos(int tipo, String coincidenciaNombre) {
@@ -120,6 +124,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAeropuertos = new javax.swing.JTable();
@@ -165,6 +170,11 @@ public class Principal extends javax.swing.JFrame {
 
         rdbPrivado.setSelected(true);
         rdbPrivado.setText("Privado");
+        rdbPrivado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdbPrivadoMouseClicked(evt);
+            }
+        });
         rdbPrivado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdbPrivadoActionPerformed(evt);
@@ -222,6 +232,10 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        rdbPrivado.getAccessibleContext().setAccessibleParent(this);
+        rdbPublico.getAccessibleContext().setAccessibleDescription("");
+        rdbPublico.getAccessibleContext().setAccessibleParent(this);
 
         jMenu1.setText("Aeropuertos");
 
@@ -459,7 +473,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_showtxtActionPerformed
 
     private void gananciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gananciasActionPerformed
-/*
+
         if (this.tblAeropuertos.getSelectedRow()!=-1) {
             
             int fila = this.tblAeropuertos.getSelectedRow();
@@ -468,7 +482,7 @@ public class Principal extends javax.swing.JFrame {
                     
             Airport aeropuerto = buscarAeropuerto(id);
                     
-            String gananciasText = JOptionPane.showMessageDialog(this,
+            String gananciasText = JOptionPane.showInputDialog(this,
                                                         "Introduce las ganancias",
                                                         "Introducir",
                                                         JOptionPane.INFORMATION_MESSAGE);
@@ -491,7 +505,7 @@ public class Principal extends javax.swing.JFrame {
 
 
 
-*/
+
     }//GEN-LAST:event_gananciasActionPerformed
 
     private void txtFiltroNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroNombreActionPerformed
@@ -514,11 +528,18 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deleteAirplaneActionPerformed
 
+    private void rdbPrivadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdbPrivadoMouseClicked
+        this.rdbPublico.isSelected();
+
+
+    }//GEN-LAST:event_rdbPrivadoMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu activ;
     private javax.swing.JMenuItem addAirport;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JMenuItem deleteAirplane;
     private javax.swing.JMenuItem deleteAirport;
     private javax.swing.JMenuItem edit;
