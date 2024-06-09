@@ -1,19 +1,21 @@
 package Utilidades;
 
-import Classes.Airport;
-import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 
 
-public class MiObjectOutputStream {
+public class MiObjectOutputStream extends ObjectOutputStream {
 
-    public MiObjectOutputStream(FileOutputStream fileOutputStream) {
+    public MiObjectOutputStream(OutputStream out) throws IOException {
+        super(out);
     }
 
-    void close() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    protected MiObjectOutputStream() throws IOException, SecurityException {
+        super();
     }
 
-    void writeObject(Airport a) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    protected void writeStreamMeader() throws IOException{
+        
     }
 }

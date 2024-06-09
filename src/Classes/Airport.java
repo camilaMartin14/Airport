@@ -3,10 +3,11 @@ package Classes;
  * Class Airport, represents an airport
  * @author camilaMartin14
  */
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public abstract class Airport implements Comparable <Airport> {
+public abstract class Airport implements Serializable {
     
     private static int idAutonumerado = 1;
     
@@ -216,7 +217,7 @@ public abstract class Airport implements Comparable <Airport> {
      * @param o
      * @return 
      */
-     @Override
+    
     public int compareTo(Airport o) {
 
         if(this.anioInauguracion < o.getAnioInauguracion()){
