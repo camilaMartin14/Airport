@@ -1,0 +1,53 @@
+# Maven
+target/
+
+# Spring Boot
+*.iml
+.idea/
+.springBeans
+
+# Logs
+logs/
+*.log
+
+# IDEs
+.vscode/
+*.code-workspace
+
+# Compiled files
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ IDEA
+*.iml
+.idea/
+
+# NetBeans
+/nbproject/private/
+/build/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Gradle
+.gradle/
+build/
+
+# Dependencies
+/bin/
+/lib/
+
