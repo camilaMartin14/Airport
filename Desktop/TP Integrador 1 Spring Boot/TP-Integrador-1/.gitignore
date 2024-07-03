@@ -31,3 +31,48 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Ignorar directorios específicos ###
+AppData/
+Configuración local/
+Cookies/
+Datos de programa/
+Entorno de red/
+Impresoras/
+Menú Inicio/
+Mis documentos/
+Plantillas/
+Reciente/
+SendTo/
+
+### Ignorar archivos no deseados o personales ###
+.bash_history
+.config/
+.gitconfig
+.gradle/
+.jdks/
+.m2/
+.nbi/
+.vscode/
+3D Objects/
+Contacts/
+IngresoTecnicaturaJPA/
+NetBeansProjects/
+Postman.lnk
+Visual Studio Code.lnk
+desktop.ini
+Documents/
+Downloads/
+Favorites/
+IntelGraphicsProfiles/
+Links/
+Music/
+NTUSER.DAT*
+OneDrive/
+Pictures/
+Saved Games/
+Searches/
+Videos/
+json
+ntuser.dat.LOG*
+ntuser.ini
