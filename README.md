@@ -3,3 +3,6 @@
 - ⛽ Gas Station:
 - 🍤 Restaurant:
 - 🦷 Dentist:
+- 🏀 Players:
+- 👩‍🎓 Grade Average:
+- 🔺 Triangle Area:
