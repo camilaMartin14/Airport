@@ -9,5 +9,4 @@ public class AreaDelTrianguloApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AreaDelTrianguloApplication.class, args);
 	}
-
 }
