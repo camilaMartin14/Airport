@@ -94,11 +94,5 @@ public class MetodosSueltos {
         }
     }
     
-    public static boolean validaNumeroEntero_Exp(String texto) {
-        return texto.matches("^-?[0-9]+$");
-    }
-    
-    public static boolean validaNumeroReal_Exp (String texto) {
-        return texto.matches ("^-?\\d*\\.?\\d+[eE]?[-+]?\\d*$");
-    }
+
 }
